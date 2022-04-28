@@ -40,9 +40,6 @@ def check():
     data = request.get_json(force=True)
 
     inputLine = data['trans']
-    print(inputLine)
-
-    #inputLine="4462,-2.30334956758553,1.759247460267,-0.359744743330052,2.33024305053917,-0.821628328375422,-0.0757875706194599,0.562319782266954,-0.399146578487216,-0.238253367661746,-1.52541162656194,2.03291215755072,-6.56012429505962,0.0229373234890961,-1.47010153611197,-0.698826068579047,-2.28219382856251,-4.78183085597533,-2.61566494476124,-1.33444106667307,-0.430021867171611,-0.294166317554753,-0.932391057274991,0.172726295799422,-0.0873295379700724,-0.156114264651172,-0.542627889040196,0.0395659889264757,-0.153028796529788,239.93"
 
     modelFileName="storedModel.pckl"
 
@@ -62,7 +59,7 @@ def check():
     sc.set_params(copy=True, with_mean=True, with_std=True)
 
     # Transform ammount column
-    df['normAmount'] = 0 #sc.fit_transform(df['Amount'].values.reshape(-1,1))
+    df['normAmount'] = 0 
 
     # Remove not needed columns
     df = df.drop (['Time', 'Amount'], axis = 1);
