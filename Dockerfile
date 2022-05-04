@@ -1,11 +1,6 @@
 # Python image to use.
 FROM python:3.8
 
-# Download backend repo
-RUN cd ./GCP_backend
-RUN git pull
-RUN cd ..
-
 # Set the working directory to /app
 WORKDIR /app
 
