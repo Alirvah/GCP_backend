@@ -2,6 +2,7 @@
 
 Running serverless on GCP
 
+Flask application which can predict if a given credit card transaction string is a fraud or not with 97% recall. Utilizes a pickeled Neural Network `storedModel.pckl` develped and described [here](https://www.kaggle.com/code/jdelamorena/recall-97-by-using-undersampling-neural-network).
 
 ```
 git clone https://github.com/Alirvah/GCP_frontend.git
