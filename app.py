@@ -22,16 +22,8 @@ CORS(app)
 @app.route('/')
 def hello():
     """Return a friendly HTTP greeting."""
-    message = "It's running!"
-
-    """Get Cloud Run environment variables."""
-    service = os.environ.get('K_SERVICE', 'Unknown service')
-    revision = os.environ.get('K_REVISION', 'Unknown revision')
-
-    return render_template('index.html',
-        message=message,
-        Service=service,
-        Revision=revision)
+    message = {"message":"It's running!"}
+    return jsonify(message)
 
 
 @app.route('/check', methods=['POST'])
@@ -47,8 +39,7 @@ def check():
     loaded_model = pickle.load(open(modelFileName, 'rb'))
 
     # Header line
-    csvHeader="""Time,V1,V2,V3,V4,V5,V6,V7,V8,V9,V10,V11,V12,V13,V14,V15,V16,V17,V18,V19,V20,V21,V22,V23,V24,V25,V26,V27,V28,Amount
-    """
+    csvHeader="Time,V1,V2,V3,V4,V5,V6,V7,V8,V9,V10,V11,V12,V13,V14,V15,V16,V17,V18,V19,V20,V21,V22,V23,V24,V25,V26,V27,V28,Amount"
 
     # Create datafile
     TESTDATA=csvHeader+"\n"+str(inputLine)
@@ -64,8 +55,6 @@ def check():
     # Remove not needed columns
     df = df.drop (['Time', 'Amount'], axis = 1);
 
-    # load the model from disk
-    loaded_model = pickle.load(open(modelFileName, 'rb'))
     result1 = loaded_model.predict(df.iloc[[0]])[0]
     result = {"result":'OK' if result1 == 0 else 'FRAUD'}
     return jsonify(result)
