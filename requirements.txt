@@ -4,4 +4,4 @@ ptvsd==4.3.2 # Required for debugging.
 flask_cors
 numpy
 pandas
-sklearn==0.24.1
+scikit-learn==0.24.1
